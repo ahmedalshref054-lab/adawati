@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حساب مؤشر كتلة الجسم BMI بدقة | أدواتي ⚡</title>
+<meta name="description" content="احسب مؤشر كتلة الجسم (BMI) مجاناً. اعرف وزنك المثالي بناءً على طولك وعمرك مع نصائح صحية مخصصة لحالتك فوراً.">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#04040a;--surface:#0c0c18;--card:#10101e;--border:rgba(255,255,255,0.07);--text:#f0f0ff;--muted:#6666aa;--gold:#f5c842;--cyan:#00e5ff;--magenta:#ff2d78;--green:#00ff9d}
+body{background:var(--bg);color:var(--text);font-family:'Cairo',sans-serif;min-height:100vh;padding:40px 4%}
+.container{max-width:700px;margin:0 auto;background:var(--card);border:1px solid var(--border);padding:35px;border-radius:24px;position:relative;z-index:2}
+.header{text-align:center;margin-bottom:30px}
+.header h1{font-family:'Tajawal',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);margin-bottom:8px}
+.header p{color:var(--muted);font-size:0.9rem}
+.input-group{margin-bottom:20px}
+.input-group label{display:block;color:var(--text);font-size:0.9rem;margin-bottom:8px;font-weight:600}
+.input-group input{width:100%;background:var(--surface);border:1px solid var(--border);padding:14px;border-radius:12px;color:#fff;font-size:1.1rem;font-family:'Cairo',sans-serif;transition:border-color 0.2s}
+.input-group input:focus{outline:none;border-color:var(--gold)}
+.calc-btn{width:100%;background:linear-gradient(135deg,var(--gold),#ff9a3c);color:#000;border:none;padding:16px;border-radius:50px;font-family:'Tajawal',sans-serif;font-weight:900;font-size:1.1rem;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
+.calc-btn:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(245,200,66,0.25)}
+.result-box{margin-top:30px;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:16px;display:none;text-align:center;animation:fadeIn 0.4s ease both}
+.bmi-val{font-size:3rem;font-weight:900;font-family:'Tajawal',sans-serif;margin-bottom:5px}
+.bmi-status{font-size:1.3rem;font-weight:700;margin-bottom:15px}
+.bmi-advice{color:var(--muted);font-size:0.9rem;line-height:1.7}
+.btn-back{display:inline-flex;align-items:center;color:var(--muted);text-decoration:none;font-size:0.85rem;margin-bottom:20px;transition:color 0.2s}
+.btn-back:hover{color:var(--gold)}
+.seo-content{max-width:700px;margin:40px auto 0;line-height:1.8;font-size:0.9rem;color:var(--muted);border-top:1px solid var(--border);padding-top:25px}
+.seo-content h2{color:#fff;font-size:1.2rem;margin-bottom:10px;font-family:'Tajawal',sans-serif}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="../" class="btn-back">← العودة للرئيسية</a>
+  
+  <div class="header">
+    <h1>حساب مؤشر كتلة الجسم (BMI)</h1>
+    <p>ادخل بياناتك لمعرفة إذا كان وزنك مثالياً وصحياً</p>
+  </div>
+
+  <div class="input-group">
+    <label for="weight">الوزن (بالكيلو جرام):</label>
+    <input type="number" id="weight" placeholder="مثال: 75" min="20" max="300">
+  </div>
+
+  <div class="input-group">
+    <label for="height">الطول (بالسنتيمتر):</label>
+    <input type="number" id="height" placeholder="مثال: 175" min="100" max="250">
+  </div>
+
+  <button class="calc-btn" onclick="calculateBMI()">احسب الآن ⚡</button>
+
+  <div class="result-box" id="resultBox">
+    <div class="bmi-val" id="bmiValue">22.5</div>
+    <div class="bmi-status" id="bmiStatus">وزن مثالي</div>
+    <div class="bmi-advice" id="bmiAdvice">جسمك في حالة ممتازة! حافظ على هذا الوزن عبر الاستمرار في تناول الأكل الصحي وممارسة الرياضة.</div>
+  </div>
+</div>
+
+<div class="seo-content">
+  <h2>ما هو مؤشر كتلة الجسم (BMI)؟</h2>
+  <p>مؤشر كتلة الجسم هو أداة عالمية لقياس طبيعة وزن الإنسان وتحديد ما إذا كان يعاني من السمنة أو النحافة أو أن وزنه مثالي وصحي. يعتمد الحساب الرياضي على قسمة الوزن بالكيلوجرام على مربع الطول بالمتر.</p>
+</div>
+
+<script>
+function calculateBMI() {
+  const weight = parseFloat(document.getElementById('weight').value);
+  const height = parseFloat(document.getElementById('height').value) / 100; // تحويل لمتر
+  
+  if (!weight || !height || weight <= 0 || height <= 0) {
+    alert("برجاء إدخال قيم صحيحة للوزن والطول");
+    return;
+  }
+  
+  const bmi = (weight / (height * height)).toFixed(1);
+  const resultBox = document.getElementById('resultBox');
+  const bmiValue = document.getElementById('bmiValue');
+  const bmiStatus = document.getElementById('bmiStatus');
+  const bmiAdvice = document.getElementById('bmiAdvice');
+  
+  bmiValue.innerText = bmi;
+  resultBox.style.display = 'block';
+  
+  if (bmi < 18.5) {
+    bmiValue.style.color = 'var(--cyan)';
+    bmiStatus.innerText = 'نحافة مفرطة ⚠️';
+    bmiAdvice.innerText = 'وزنك أقل من المعدل الطبيعي. يُنصح بالتركيز على تناول الأطعمة الغنية بالبروتينات والسعرات الحرارية الصحية واستشارة أخصائي تغذية.';
+  } else if (bmi >= 18.5 && bmi < 25) {
+    bmiValue.style.color = 'var(--green)';
+    bmiStatus.innerText = 'وزن مثالي ورائع ✓';
+    bmiAdvice.innerText = 'جسمك في حالة ممتازة وصحية تماماً! استمر في اتباع نمط حياتك الحالي وحافظ على ممارسة التمارين الرياضية الخفيفة.';
+  } else if (bmi >= 25 && bmi < 30) {
+    bmiValue.style.color = 'var(--gold)';
+    bmiStatus.innerText = 'وزن زائد قليلاً ⚠️';
+    bmiAdvice.innerText = 'أنت تقترب من مرحلة السمنة. حاول تقليل السكريات والنشويات المكررة، وابدأ بالمشي اليومي لمدة 30 دقيقة للعودة للوزن المثالي.';
+  } else {
+    bmiValue.style.color = 'var(--magenta)';
+    bmiStatus.innerText = 'سمنة مفرطة 🚨';
+    bmiAdvice.innerText = 'وزنك يشكل خطراً حقيقياً على صحتك. يجب تنظيم جدولك الغذائي فوراً، وتقليل السعرات الحرارية، ومراجعة الطبيب لتجنب المشاكل الصحية.';
+  }
+}
+</script>
+</body>
+</html>

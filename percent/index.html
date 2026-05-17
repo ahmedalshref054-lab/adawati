@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حساب النسبة المئوية بدقة وسرعة | أدواتي ⚡</title>
+<meta name="description" content="احسب النسبة المئوية أونلاين: احسب قيمة الخصومات، والزيادات، ونسبة الدرجات والشهادات بسهولة وبأداة مجانية 100%.">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#04040a;--surface:#0c0c18;--card:#10101e;--border:rgba(255,255,255,0.07);--text:#f0f0ff;--muted:#6666aa;--gold:#f5c842;--cyan:#00e5ff;--magenta:#ff2d78;--green:#00ff9d}
+body{background:var(--bg);color:var(--text);font-family:'Cairo',sans-serif;min-height:100vh;padding:40px 4%}
+.container{max-width:650px;margin:0 auto;background:var(--card);border:1px solid var(--border);padding:35px;border-radius:24px;position:relative;z-index:2}
+.header{text-align:center;margin-bottom:30px}
+.header h1{font-family:'Tajawal',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);margin-bottom:8px}
+.header p{color:var(--muted);font-size:0.9rem}
+.calc-card{background:var(--surface);border:1px solid var(--border);padding:20px;border-radius:16px;margin-bottom:20px}
+.calc-card h3{font-size:1rem;color:#fff;margin-bottom:15px;font-family:'Tajawal',sans-serif}
+.inline-inputs{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.inline-inputs input{background:var(--bg);border:1px solid var(--border);padding:10px;border-radius:8px;color:#fff;font-family:'Cairo',sans-serif;width:100px;font-size:1rem;text-align:center}
+.inline-inputs input:focus{outline:none;border-color:var(--gold)}
+.mini-btn{background:linear-gradient(135deg,var(--gold),#ff9a3c);color:#000;border:none;padding:10px 18px;border-radius:8px;font-family:'Tajawal',sans-serif;font-weight:900;cursor:pointer;font-size:0.85rem}
+.mini-btn:hover{transform:translateY(-1px)}
+.res-val{color:var(--green);font-weight:700;margin-right:10px;font-size:1.1rem}
+.btn-back{display:inline-flex;align-items:center;color:var(--muted);text-decoration:none;font-size:0.85rem;margin-bottom:20px;transition:color 0.2s}
+.btn-back:hover{color:var(--gold)}
+.seo-content{max-width:650px;margin:40px auto 0;line-height:1.8;font-size:0.9rem;color:var(--muted);border-top:1px solid var(--border);padding-top:25px}
+.seo-content h2{color:#fff;font-size:1.2rem;margin-bottom:10px;font-family:'Tajawal',sans-serif}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="../" class="btn-back">← العودة للرئيسية</a>
+  
+  <div class="header">
+    <h1>حساب النسبة المئوية</h1>
+    <p>اختر العملية الحسابية التي تريدها واحسب النسب والخصومات فوراً</p>
+  </div>
+
+  <div class="calc-card">
+    <h3>1. كم تساوي النسبة من مبلغ معين؟</h3>
+    <div class="inline-inputs">
+      <span>احسب</span>
+      <input type="number" id="p1" placeholder="10">%
+      <span>من مبلغ</span>
+      <input type="number" id="v1" placeholder="500">
+      <button class="mini-btn" onclick="calcOne()">احسب</button>
+      <span class="res-val" id="r1"></span>
+    </div>
+  </div>
+
+  <div class="calc-card">
+    <h3>2. حساب نسبة عدد من عدد آخر (مثال: درجات الشهادة)</h3>
+    <div class="inline-inputs">
+      <span>العدد</span>
+      <input type="number" id="p2" placeholder="350">
+      <span>من العدد الكلي</span>
+      <input type="number" id="v2" placeholder="400">
+      <button class="mini-btn" onclick="calcTwo()">احسب</button>
+      <span class="res-val" id="r2"></span>
+    </div>
+  </div>
+
+  <div class="calc-card">
+    <h3>3. حساب قيمة الخصم (الأوكازيون والشركات)</h3>
+    <div class="inline-inputs">
+      <span>مبلغ قيمته</span>
+      <input type="number" id="v3" placeholder="1000">
+      <span>عليه خصم نسبة</span>
+      <input type="number" id="p3" placeholder="20">%
+      <button class="mini-btn" onclick="calcThree()">احسب</button>
+      <span class="res-val" id="r3"></span>
+    </div>
+  </div>
+</div>
+
+<div class="seo-content">
+  <h2>كيفية الاستفادة من حاسبة النسبة المئوية</h2>
+  <p>النسبة المئوية هي طريقة للتعبير عن عدد على شكل كسر من 100 مقامه يساوي مئة. استخداماتها لا تنتهي في حياتنا اليومية؛ بدءاً من حساب درجات الطلاب في الامتحانات وتقدير المعدل التراكمي، مروراً بمعرفة القيمة المالية المستقطعة عند الشراء في مواسم التنزيلات، وحتى حساب نسب الأرباح والفوائد والضرائب في الأعمال التجارية.</p>
+</div>
+
+<script>
+function calcOne() {
+  const p = parseFloat(document.getElementById('p1').value);
+  const v = parseFloat(document.getElementById('v1').value);
+  if(isNaN(p) || isNaN(v)) return;
+  const res = (p / 100) * v;
+  document.getElementById('r1').innerText = `= ${res.toFixed(2).replace(/\.?0+$/, '')}`;
+}
+
+function calcTwo() {
+  const p = parseFloat(document.getElementById('p2').value);
+  const v = parseFloat(document.getElementById('v2').value);
+  if(isNaN(p) || isNaN(v) || v === 0) return;
+  const res = (p / v) * 100;
+  document.getElementById('r2').innerText = `= ${res.toFixed(2).replace(/\.?0+$/, '')}%`;
+}
+
+function calcThree() {
+  const v = parseFloat(document.getElementById('v3').value);
+  const p = parseFloat(document.getElementById('p3').value);
+  if(isNaN(p) || isNaN(v)) return;
+  const discountAmount = (p / 100) * v;
+  const finalPrice = v - discountAmount;
+  document.getElementById('r3').innerText = `السعر بعد الخصم: ${finalPrice.toFixed(2).replace(/\.?0+$/, '')} (وفرت ${discountAmount.toFixed(2).replace(/\.?0+$/, '')})`;
+}
+</script>
+</body>
+</html>

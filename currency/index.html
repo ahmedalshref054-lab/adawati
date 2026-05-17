@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محول العملات السريع بدقة | أدواتي ⚡</title>
+<meta name="description" content="حوّل بين العملات العالمية والعربية فوراً. أسعار تحويل الدولار، اليورو، الريال، الدرهم، والجنيه بدقة وبأداة مجانية وسريعة.">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#04040a;--surface:#0c0c18;--card:#10101e;--border:rgba(255,255,255,0.07);--text:#f0f0ff;--muted:#6666aa;--gold:#f5c842;--cyan:#00e5ff;--magenta:#ff2d78;--green:#00ff9d}
+body{background:var(--bg);color:var(--text);font-family:'Cairo',sans-serif;min-height:100vh;padding:40px 4%}
+.container{max-width:650px;margin:0 auto;background:var(--card);border:1px solid var(--border);padding:35px;border-radius:24px;position:relative;z-index:2}
+.header{text-align:center;margin-bottom:30px}
+.header h1{font-family:'Tajawal',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);margin-bottom:8px}
+.header p{color:var(--muted);font-size:0.9rem}
+.input-group{margin-bottom:20px}
+.input-group label{display:block;color:var(--text);font-size:0.9rem;margin-bottom:8px;font-weight:600}
+.input-group input, .input-group select{width:100%;background:var(--surface);border:1px solid var(--border);padding:14px;border-radius:12px;color:#fff;font-size:1.1rem;font-family:'Cairo',sans-serif;transition:border-color 0.2s}
+.input-group input:focus, .input-group select:focus{outline:none;border-color:var(--gold)}
+.convert-row{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:20px}
+.calc-btn{width:100%;background:linear-gradient(135deg,var(--gold),#ff9a3c);color:#000;border:none;padding:16px;border-radius:50px;font-family:'Tajawal',sans-serif;font-weight:900;font-size:1.1rem;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;margin-top:10px}
+.calc-btn:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(245,200,66,0.25)}
+.result-box{margin-top:30px;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:16px;display:none;text-align:center;animation:fadeIn 0.4s ease both}
+.result-text{font-size:1.8rem;font-weight:900;font-family:'Tajawal',sans-serif;color:var(--green)}
+.btn-back{display:inline-flex;align-items:center;color:var(--muted);text-decoration:none;font-size:0.85rem;margin-bottom:20px;transition:color 0.2s}
+.btn-back:hover{color:var(--gold)}
+.seo-content{max-width:650px;margin:40px auto 0;line-height:1.8;font-size:0.9rem;color:var(--muted);border-top:1px solid var(--border);padding-top:25px}
+.seo-content h2{color:#fff;font-size:1.2rem;margin-bottom:10px;font-family:'Tajawal',sans-serif}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="../" class="btn-back">← العودة للرئيسية</a>
+  
+  <div class="header">
+    <h1>محول العملات السريع</h1>
+    <p>أدخل المبلغ واختر العملات للتحويل الفوري المحدث</p>
+  </div>
+
+  <div class="input-group">
+    <label for="amount">المبلغ:</label>
+    <input type="number" id="amount" placeholder="مثال: 100" value="100">
+  </div>
+
+  <div class="convert-row">
+    <div class="input-group">
+      <label for="fromCurrency">من عملة:</label>
+      <select id="fromCurrency">
+        <option value="USD">USD - دولار أمريكي</option>
+        <option value="EUR">EUR - يورو</option>
+        <option value="SAR">SAR - ريال سعودي</option>
+        <option value="AED">AED - درهم إماراتي</option>
+        <option value="EGP">EGP - جنيه مصري</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="toCurrency">إلى عملة:</label>
+      <select id="toCurrency">
+        <option value="EGP">EGP - جنيه مصري</option>
+        <option value="USD">USD - دولار أمريكي</option>
+        <option value="EUR">EUR - يورو</option>
+        <option value="SAR">SAR - ريال سعودي</option>
+        <option value="AED">AED - درهم إماراتي</option>
+      </select>
+    </div>
+  </div>
+
+  <button class="calc-btn" onclick="convertCurrency()">تحويل الآن ⚡</button>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-text" id="resultValue">0.00</div>
+  </div>
+</div>
+
+<div class="seo-content">
+  <h2>أهمية متابعة تحويل العملات أونلاين</h2>
+  <p>مع التغيرات المستمرة في الاقتصاد العالمي، أصبح التحويل الفوري بين العملات أداة لا غنى عنها للتجار، المسافرين، والمستثمرين لتقدير الميزانيات بدقة. تتيح لك أداتنا الحسابية إجراء العمليات الحسابية الأساسية بسرعة فائقة وتصميم متجاوب مع كافة الشاشات.</p>
+</div>
+
+<script>
+// نسب تحويل تقريبية مبنية على الدولار كأساس (1 دولار كم يساوي من العملات الأخرى)
+const exchangeRates = {
+  USD: 1,
+  EUR: 0.92,
+  SAR: 3.75,
+  AED: 3.67,
+  EGP: 48.50
+};
+
+function convertCurrency() {
+  const amount = parseFloat(document.getElementById('amount').value);
+  const from = document.getElementById('fromCurrency').value;
+  const to = document.getElementById('toCurrency').value;
+
+  if (!amount || amount <= 0) {
+    alert("برجاء إدخال مبلغ صحيح أكبر من الصفر");
+    return;
+  }
+
+  // التحويل من العملة الأولى إلى دولار ثم إلى العملة الثانية
+  const amountInUSD = amount / exchangeRates[from];
+  const convertedAmount = amountInUSD * exchangeRates[to];
+
+  const resultBox = document.getElementById('resultBox');
+  const resultValue = document.getElementById('resultValue');
+
+  resultValue.innerText = `${amount.toLocaleString()} ${from} = ${convertedAmount.toFixed(2).toLocaleString()} ${to}`;
+  resultBox.style.display = 'block';
+}
+</script>
+</body>
+</html>

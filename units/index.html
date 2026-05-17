@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محول الوحدات الشامل بدقة | أدواتي ⚡</title>
+<meta name="description" content="حوّل بين وحدات القياس المختلفة فوراً: الأوزان (كيلو، باوند)، الأطوال (متر، قدم، إنش)، ودرجات الحرارة بدقة عالية وأداة مجانية.">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#04040a;--surface:#0c0c18;--card:#10101e;--border:rgba(255,255,255,0.07);--text:#f0f0ff;--muted:#6666aa;--gold:#f5c842;--cyan:#00e5ff;--magenta:#ff2d78;--green:#00ff9d}
+body{background:var(--bg);color:var(--text);font-family:'Cairo',sans-serif;min-height:100vh;padding:40px 4%}
+.container{max-width:650px;margin:0 auto;background:var(--card);border:1px solid var(--border);padding:35px;border-radius:24px;position:relative;z-index:2}
+.header{text-align:center;margin-bottom:30px}
+.header h1{font-family:'Tajawal',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);margin-bottom:8px}
+.header p{color:var(--muted);font-size:0.9rem}
+.type-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:25px}
+.type-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:12px;border-radius:12px;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:600;transition:all 0.2s}
+.type-btn.active{background:var(--gold);color:#000;border-color:var(--gold)}
+.input-group{margin-bottom:20px}
+.input-group label{display:block;color:var(--text);font-size:0.9rem;margin-bottom:8px;font-weight:600}
+.input-group input, .input-group select{width:100%;background:var(--surface);border:1px solid var(--border);padding:14px;border-radius:12px;color:#fff;font-size:1.1rem;font-family:'Cairo',sans-serif;transition:border-color 0.2s}
+.input-group input:focus, .input-group select:focus{outline:none;border-color:var(--gold)}
+.convert-row{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:20px}
+.calc-btn{width:100%;background:linear-gradient(135deg,var(--gold),#ff9a3c);color:#000;border:none;padding:16px;border-radius:50px;font-family:'Tajawal',sans-serif;font-weight:900;font-size:1.1rem;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
+.calc-btn:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(245,200,66,0.25)}
+.result-box{margin-top:30px;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:16px;display:none;text-align:center;animation:fadeIn 0.4s ease both}
+.result-text{font-size:1.8rem;font-weight:900;font-family:'Tajawal',sans-serif;color:var(--cyan)}
+.btn-back{display:inline-flex;align-items:center;color:var(--muted);text-decoration:none;font-size:0.85rem;margin-bottom:20px;transition:color 0.2s}
+.btn-back:hover{color:var(--gold)}
+.seo-content{max-width:650px;margin:40px auto 0;line-height:1.8;font-size:0.9rem;color:var(--muted);border-top:1px solid var(--border);padding-top:25px}
+.seo-content h2{color:#fff;font-size:1.2rem;margin-bottom:10px;font-family:'Tajawal',sans-serif}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="../" class="btn-back">← العودة للرئيسية</a>
+  
+  <div class="header">
+    <h1>محول الوحدات الشامل</h1>
+    <p>اختر نوع القياس وحوّل بين الوحدات العالمية والمحلية فوراً</p>
+  </div>
+
+  <div class="type-selector">
+    <button class="type-btn active" onclick="switchType('weight', this)">⚖️ الوزن</button>
+    <button class="type-btn" onclick="switchType('length', this)">📏 الطول</button>
+    <button class="type-btn" onclick="switchType('temp', this)">🌡️ الحرارة</button>
+  </div>
+
+  <div class="input-group">
+    <label for="inputValue">القيمة المراد تحويلها:</label>
+    <input type="number" id="inputValue" value="1" placeholder="أدخل الرقم هنا">
+  </div>
+
+  <div class="convert-row">
+    <div class="input-group">
+      <label for="fromUnit">من وحدة:</label>
+      <select id="fromUnit"></select>
+    </div>
+
+    <div class="input-group">
+      <label for="toUnit">إلى وحدة:</label>
+      <select id="toUnit"></select>
+    </div>
+  </div>
+
+  <button class="calc-btn" onclick="convertUnits()">تحويل الآن ⚡</button>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-text" id="resultValue">0.00</div>
+  </div>
+</div>
+
+<div class="seo-content">
+  <h2>أهمية أدوات تحويل وحدات القياس</h2>
+  <p>تختلف أنظمة القياس والوحدات عالمياً بين النظام المتري (المستخدم في معظم الدول العربية) والنظام الإمبراطوري (مثل المستخدم في أمريكا وبريطانيا). أداة تحويل الوحدات تسهل عليك الانتقال بين الكيلوجرام والباوند، أو المتر والقدم والإنش، لضمان دقة حساباتك الهندسية أو التجارية اليومية.</p>
+</div>
+
+<script>
+const unitsData = {
+  weight: {
+    units: { KG: "كيلوجرام (KG)", LB: "باوند (LB)", GM: "جرام (GM)" },
+    rates: { KG: 1, LB: 2.20462, GM: 1000 } // بالنسبة للكيلوجرام
+  },
+  length: {
+    units: { M: "متر (M)", FT: "قدم (FT)", IN: "إنش / بوصة (IN)", CM: "سنتيمتر (CM)" },
+    rates: { M: 1, FT: 3.28084, IN: 39.3701, CM: 100 } // بالنسبة للمتر
+  },
+  temp: {
+    units: { C: "سلزيوس (°C)", F: "فهرنهايت (°F)" }
+  }
+};
+
+let currentType = 'weight';
+
+function populateSelects() {
+  const fromSelect = document.getElementById('fromUnit');
+  const toSelect = document.getElementById('toUnit');
+  fromSelect.innerHTML = '';
+  toSelect.innerHTML = '';
+
+  const options = unitsData[currentType].units;
+  Object.keys(options).forEach((key, index) => {
+    let opt1 = new Option(options[key], key);
+    let opt2 = new Option(options[key], key);
+    fromSelect.add(opt1);
+    toSelect.add(opt2);
+  });
+  
+  // لكي لا يختار نفس الوحدة افتراضياً في الصندوقين
+  if(toSelect.options.length > 1) toSelect.selectedIndex = 1;
+}
+
+function switchType(type, btn) {
+  currentType = type;
+  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('resultBox').style.display = 'none';
+  populateSelects();
+}
+
+function convertUnits() {
+  const val = parseFloat(document.getElementById('inputValue').value);
+  const from = document.getElementById('fromUnit').value;
+  const to = document.getElementById('toUnit').value;
+
+  if (isNaN(val)) {
+    alert("برجاء إدخال رقم صحيح");
+    return;
+  }
+
+  let result = 0;
+
+  if (currentType === 'temp') {
+    if (from === to) result = val;
+    else if (from === 'C' && to === 'F') result = (val * 9/5) + 32;
+    else if (from === 'F' && to === 'C') result = (val - 32) * 5/9;
+  } else {
+    // التحويل للوحدة الأساسية (المتر أو الكيلو) ثم للوحدة المستهدفة
+    const baseValue = val / unitsData[currentType].rates[from];
+    result = baseValue * unitsData[currentType].rates[to];
+  }
+
+  const resultBox = document.getElementById('resultBox');
+  const resultValue = document.getElementById('resultValue');
+  
+  resultValue.innerText = `${val} ${from} = ${result.toFixed(3).replace(/\.?0+$/, '')} ${to}`;
+  resultBox.style.display = 'block';
+}
+
+// تشغيل ملء القوائم تلقائياً عند فتح الصفحة لأول مرة
+populateSelects();
+</script>
+</body>
+</html>

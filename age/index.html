@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>احسب عمرك بالتفصيل والدقة | أدواتي ⚡</title>
+<meta name="description" content="احسب عمرك بالسنوات، الشهور، الأيام، والساعات بدقة. اعرف اليوم الذي ولدت فيه وكم يوماً متبقياً على عيد ميلادك القادم من خلال أداتنا المجانية.">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#04040a;--surface:#0c0c18;--card:#10101e;--border:rgba(255,255,255,0.07);--text:#f0f0ff;--muted:#6666aa;--gold:#f5c842;--cyan:#00e5ff;--magenta:#ff2d78;--green:#00ff9d}
+body{background:var(--bg);color:var(--text);font-family:'Cairo',sans-serif;min-height:100vh;padding:40px 4%}
+.container{max-width:650px;margin:0 auto;background:var(--card);border:1px solid var(--border);padding:35px;border-radius:24px;position:relative;z-index:2}
+.header{text-align:center;margin-bottom:30px}
+.header h1{font-family:'Tajawal',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);margin-bottom:8px}
+.header p{color:var(--muted);font-size:0.9rem}
+.input-group{margin-bottom:24px}
+.input-group label{display:block;color:var(--text);font-size:0.9rem;margin-bottom:8px;font-weight:600}
+.input-group input{width:100%;background:var(--surface);border:1px solid var(--border);padding:14px;border-radius:12px;color:#fff;font-size:1.1rem;font-family:'Cairo',sans-serif;transition:border-color 0.2s;text-align:center}
+.input-group input:focus{outline:none;border-color:var(--gold)}
+.calc-btn{width:100%;background:linear-gradient(135deg,var(--gold),#ff9a3c);color:#000;border:none;padding:16px;border-radius:50px;font-family:'Tajawal',sans-serif;font-weight:900;font-size:1.1rem;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
+.calc-btn:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(245,200,66,0.25)}
+.result-box{margin-top:30px;display:none;animation:fadeIn 0.4s ease both}
+.grid-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.stat-card{background:var(--surface);border:1px solid var(--border);padding:15px;border-radius:14px;text-align:center}
+.stat-num{font-family:'Tajawal',sans-serif;font-size:1.8rem;font-weight:900;color:var(--gold)}
+.stat-lbl{color:var(--muted);font-size:0.8rem;margin-top:2px}
+.countdown-box{background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.15);padding:18px;border-radius:14px;text-align:center;color:var(--cyan);font-weight:600;font-size:0.95rem;line-height:1.6}
+.btn-back{display:inline-flex;align-items:center;color:var(--muted);text-decoration:none;font-size:0.85rem;margin-bottom:20px;transition:color 0.2s}
+.btn-back:hover{color:var(--gold)}
+.seo-content{max-width:650px;margin:40px auto 0;line-height:1.8;font-size:0.9rem;color:var(--muted);border-top:1px solid var(--border);padding-top:25px}
+.seo-content h2{color:#fff;font-size:1.2rem;margin-bottom:10px;font-family:'Tajawal',sans-serif}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="../" class="btn-back">← العودة للرئيسية</a>
+  
+  <div class="header">
+    <h1>حساب العمر بالتفصيل</h1>
+    <p>أدخل تاريخ ميلادك واعرف عمرك الدقيق والوقت المتبقي ليوم ميلادك القادم</p>
+  </div>
+
+  <div class="input-group">
+    <label for="birthdate">اختر تاريخ ميلادك:</label>
+    <input type="date" id="birthdate" max="2026-05-17">
+  </div>
+
+  <button class="calc-btn" onclick="calculateAge()">احسب العمر الآن ⚡</button>
+
+  <div class="result-box" id="resultBox">
+    <div class="grid-stats">
+      <div class="stat-card"><div class="stat-num" id="yearsNum">0</div><div class="stat-lbl">سنوات</div></div>
+      <div class="stat-card"><div class="stat-num" id="monthsNum">0</div><div class="stat-lbl">شهور</div></div>
+      <div class="stat-card"><div class="stat-num" id="daysNum">0</div><div class="stat-lbl">أيام</div></div>
+    </div>
+    <div class="countdown-box" id="countdownResult">
+      متبقي على عيد ميلادك القادم: ...
+    </div>
+  </div>
+</div>
+
+<div class="seo-content">
+  <h2>أهمية معرفة حاسبة السن وتاريخ الميلاد</h2>
+  <p>حساب السن بشكل دقيق مطلوب في العديد من المعاملات الرسمية مثل التسجيل في المدارس، الجامعات، أو التقديم على الوظائف وحساب المعاشات التقديرية. تتيح لك أداتنا معرفة التفاصيل الدقيقة لعمرك الزمني باليوم والشهر والسنة دون أي تعقيد أو حاجة لعمليات حسابية يدوية معقدة.</p>
+</div>
+
+<script>
+// تحديد الحد الأقصى للتاريخ بيومنا الحالي في عام 2026 تلقائياً لمنع اختيار تواريخ في المستقبل
+document.getElementById('birthdate').max = new Date().toISOString().split("T")[0];
+
+function calculateAge() {
+  const birthInput = document.getElementById('birthdate').value;
+  if (!birthInput) {
+    alert("برجاء اختيار تاريخ ميلاد صحيح");
+    return;
+  }
+
+  const birthDate = new Date(birthInput);
+  const today = new Date();
+
+  let years = today.getFullYear() - birthDate.getFullYear();
+  let months = today.getMonth() - birthDate.getMonth();
+  let days = today.getDate() - birthDate.getDate();
+
+  if (days < 0) {
+    months--;
+    const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+    days += lastMonth.getDate();
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  // حساب وقت عيد الميلاد القادم
+  let nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+  if (today > nextBirthday) {
+    nextBirthday.setFullYear(today.getFullYear() + 1);
+  }
+
+  const diffTime = Math.abs(nextBirthday - today);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  // عرض النتائج
+  document.getElementById('yearsNum').innerText = years;
+  document.getElementById('monthsNum').innerText = months;
+  document.getElementById('daysNum').innerText = days;
+
+  const cdBox = document.getElementById('countdownResult');
+  if(diffDays === 365 || diffDays === 0) {
+    cdBox.innerText = "🎉 كل عام وأنت بخير! عيد ميلادك السعيد هو اليوم! 🎂";
+  } else {
+    cdBox.innerText = `🎂 متبقي على عيد ميلادك القادم: ${diffDays} يوم فقط!`;
+  }
+
+  document.getElementById('resultBox').style.display = 'block';
+}
+</script>
+</body>
+</html>
