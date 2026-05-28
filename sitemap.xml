@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-   <url>
-      <loc>https://adawati-sage.vercel.app/</loc>
-      <lastmod>2026-05-18</lastmod>
-      <changefreq>daily</changefreq>
-      <priority>1.0</priority>
-   </url>
+  <!-- الصفحة الرئيسية -->
+  <url>
+    <loc>https://adawati-sage.vercel.app/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- أداة حساب كتلة الجسم -->
+  <url>
+    <loc>https://adawati-sage.vercel.app/bmi/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- أداة توليد كلمة المرور -->
+  <url>
+    <loc>https://adawati-sage.vercel.app/password/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- أداة تحويل العملات -->
+  <url>
+    <loc>https://adawati-sage.vercel.app/currency/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- أداة محول الوحدات -->
+  <url>
+    <loc>https://adawati-sage.vercel.app/units/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- أداة حساب العمر -->
+  <url>
+    <loc>https://adawati-sage.vercel.app/age/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- أداة حساب النسب المئوية -->
+  <url>
+    <loc>https://adawati-sage.vercel.app/percent/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
